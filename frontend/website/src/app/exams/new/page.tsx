@@ -18,7 +18,7 @@ export default function NewExamPage() {
         setMessage('');
 
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}:8080/exams`, { title });
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/exams`, { title });
 
             // Alih-alih hanya menampilkan pesan, kita arahkan pengguna
             const newExamId = response.data.exam_id;

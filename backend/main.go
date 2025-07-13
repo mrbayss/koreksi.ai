@@ -16,7 +16,7 @@ var db *sql.DB
 func main() {
 	var err error
 	// Ganti dengan string koneksi database Anda yang sebenarnya
-	connStr := "user=postgres password=12345 dbname=book_store sslmode=disable"
+	connStr := "user=postgres password=12345 dbname=psqlai sslmode=disable"
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatalf("Gagal koneksi ke database: %v", err)

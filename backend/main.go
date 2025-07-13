@@ -41,7 +41,7 @@ func main() {
 	// Konfigurasi CORS (Cross-Origin Resource Sharing)
 	config := cors.DefaultConfig()
 	// Ganti dengan URL frontend Anda (termasuk dari tunnel jika perlu)
-	config.AllowOrigins = []string{"http://localhost:3000", "https://your-tunnel-url.loca.lt"}
+	config.AllowOrigins = []string{"http://localhost:3000", "https://your-tunnel-url.loca.lt", "https://koreksi-ai.vercel.app/"}
 	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
 	router.Use(cors.New(config))
 

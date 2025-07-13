@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -16,10 +17,15 @@ var db *sql.DB
 func main() {
 	var err error
 	// Ganti dengan string koneksi database Anda yang sebenarnya
-	connStr := "user=postgres password=12345 dbname=psqlai sslmode=disable"
+	connStr := os.Getenv("DATABASE_URL")
+	if connStr == "" {
+		// Pesan ini akan muncul di log jika Anda lupa mengatur variabel di Render
+		log.Fatal("DATABASE_URL environment variable tidak diatur")
+	}
+
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
-		log.Fatalf("Gagal koneksi ke database: %v", err)
+		log.Fatalf("Gagal membuka koneksi database: %v", err)
 	}
 	defer db.Close()
 

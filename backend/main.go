@@ -56,8 +56,8 @@ func main() {
 	// Alur Koreksi Jawaban Siswa
 	router.POST("/exams/:exam_id/check-answers", handleCheckStudentAnswers)
 
-	fmt.Println("Server berjalan di http://localhost:8080")
-	if err := router.Run("localhost:8080"); err != nil {
+	fmt.Println("Server berjalan di http://0.0.0.0:8080")
+	if err := router.Run("0.0.0.0:8080"); err != nil {
 		log.Fatalf("Gagal menjalankan server: %v", err)
 	}
 }

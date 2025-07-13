@@ -65,7 +65,7 @@ export default function ExamDetailPage() {
 
     const fetchVerifiedKeys = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.2:8080/exams/${exam_id}/verified-keys`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}:8080/exams/${exam_id}/verified-keys`);
         if (response.data && response.data.length > 0) {
           setVerifiedKeys(response.data);
         }
@@ -104,7 +104,7 @@ export default function ExamDetailPage() {
     formData.append('image', keyFile);
     try {
       const response = await axios.post(
-        `http://192.168.1.2:8080/exams/${exam_id}/upload-key`,
+        `${process.env.NEXT_PUBLIC_API_URL}:8080/exams/${exam_id}/upload-key`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
@@ -151,11 +151,11 @@ export default function ExamDetailPage() {
         corrected_text: key.raw_text,
     }));
     try {
-        await axios.put(`http://192.168.1.2:8080/exams/${exam_id}/verify-keys`, payload);
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}:8080/exams/${exam_id}/verify-keys`, payload);
         setMessage('Kunci jawaban berhasil diverifikasi!');
         setUnverifiedKeys([]);
         
-        const response = await axios.get(`http://192.168.1.2:8080/exams/${exam_id}/verified-keys`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}:8080/exams/${exam_id}/verified-keys`);
         setVerifiedKeys(response.data);
     } catch (error) { 
         setMessage('Gagal memverifikasi kunci. Coba lagi.'); 
@@ -198,7 +198,7 @@ export default function ExamDetailPage() {
     formData.append('image', imageBlob, `jawaban_siswa_${exam_id}.jpg`);
     try {
       const response = await axios.post(
-        `http://192.168.1.2:8080/exams/${exam_id}/check-answers`,
+        `${process.env.NEXT_PUBLIC_API_URL}:8080/exams/${exam_id}/check-answers`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );

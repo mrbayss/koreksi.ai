@@ -41,8 +41,7 @@ func main() {
 	// Konfigurasi CORS (Cross-Origin Resource Sharing)
 	config := cors.DefaultConfig()
 	// Ganti dengan URL frontend Anda (termasuk dari tunnel jika perlu)
-	config.AllowOrigins = []string{"http://localhost:3000", "https://your-tunnel-url.loca.lt",
-		"https://koreksi-ai.vercel.app/"}
+	config.AllowOrigins = []string{"*"}
 	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
 	router.Use(cors.New(config))
 
@@ -57,8 +56,8 @@ func main() {
 	// Alur Koreksi Jawaban Siswa
 	router.POST("/exams/:exam_id/check-answers", handleCheckStudentAnswers)
 
-	fmt.Println("Server berjalan di http://0.0.0.0:8080")
-	if err := router.Run("0.0.0.0:8080"); err != nil {
+	fmt.Println("Server berjalan di http://localhost:8080")
+	if err := router.Run("localhost:8080"); err != nil {
 		log.Fatalf("Gagal menjalankan server: %v", err)
 	}
 }
